@@ -126,5 +126,33 @@ document.getElementById("installBtn").addEventListener("click", async () => {
 });
 </script>
 
-</body>
+</body<section id="nepal-news" style="padding:15px;background:#fff">
+  <h2>🇳🇵 नेपालका मुख्य समाचार</h2>
+  <div id="news-list">समाचार लोड हुँदैछ...</div>
+</section>
+
+<script>
+async function loadNepalNews() {
+  const box = document.getElementById("news-list");
+  const feed = "https://news.google.com/rss?hl=ne&gl=NP&ceid=NP:ne";
+
+  try {
+    const url = "https://api.rss2json.com/v1/api.json?rss_url="
+      + encodeURIComponent(feed);
+
+    const response = await fetch(url);
+    const data = await response.json();
+
+    box.innerHTML = data.items.slice(0, 15).map(item => `
+      <article style="padding:12px;border-bottom:1px solid #ddd">
+        <h3>${item.title}</h3>
+        <a href="${item.link}" target="_blank">पूरा समाचार पढ्नुहोस्</a>
+      </article>
+    `).join("");
+  } catch {
+    box.innerHTML = "समाचार अहिले उपलब्ध हुन सकेन।";
+  }
+}
+loadNepalNews();
+</script>
 </html>

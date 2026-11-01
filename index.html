@@ -112,7 +112,7 @@ section{padding-top:10px;scroll-margin-top:65px}
 #shorts h2{color:white}
 .video{
  background:#292929;
- padding:35px 10px;
+ padding:25px 10px;
  border-radius:15px;
  margin:12px 0;
 }
@@ -142,6 +142,9 @@ footer{
  padding:22px;
  margin-top:25px;
 }
+.auth-btn{width:100%;margin-top:8px}
+.small{font-size:12px;color:#777}
+#authMessage{overflow-wrap:anywhere}
 </style>
 </head>
 
@@ -150,6 +153,7 @@ footer{
 <header>
 <h1>🇳🇵 NEPAL SATHI</h1>
 <p>Connect Nepal. Discover More.</p>
+<p>नेपालको आफ्नै डिजिटल साथी ❤️</p>
 <input class="search" id="search"
 placeholder="🔍 Search Nepal Sathi..."
 oninput="searchMenu()">
@@ -157,6 +161,7 @@ oninput="searchMenu()">
 
 <nav>
 <a href="#home"><span>🏠</span>Home</a>
+<a href="#auth"><span>🔐</span>Login</a>
 <a href="#social"><span>📘</span>Social</a>
 <a href="#shorts"><span>🎬</span>Shorts</a>
 <a href="#games"><span>🎮</span>Games</a>
@@ -164,6 +169,32 @@ oninput="searchMenu()">
 </nav>
 
 <div class="container">
+
+<!-- LOGIN AND REGISTER -->
+
+<section id="auth" class="card">
+<h2>🔐 NEPAL SATHI ACCOUNT</h2>
+
+<div id="loginBox">
+<h3>Login / Register</h3>
+<input id="email" type="email" placeholder="Email Address">
+<input id="password" type="password" placeholder="Password (कम्तीमा ६ अक्षर)">
+
+<button class="auth-btn" onclick="loginUser()">Login</button>
+<button class="auth-btn" onclick="registerUser()">Create New Account</button>
+<button class="auth-btn" onclick="resetPassword()">Forgot Password?</button>
+</div>
+
+<div id="userBox" style="display:none">
+<h3>🎉 स्वागत छ!</h3>
+<p id="userEmail"></p>
+<button onclick="logoutUser()">Logout</button>
+</div>
+
+<p id="authMessage"></p>
+</section>
+
+<!-- HOME -->
 
 <section id="home">
 <h2>नमस्कार! स्वागत छ ❤️</h2>
@@ -185,14 +216,18 @@ oninput="searchMenu()">
 </div>
 </section>
 
+<!-- SOCIAL -->
+
 <section id="social">
 <h2>📘 SOCIAL NEPAL</h2>
+
 <div class="card">
 <h3>What's on your mind?</h3>
 <input id="postText" placeholder="आफ्नो विचार लेख्नुहोस्...">
 <input type="file" id="postImage" accept="image/*">
 <button onclick="createPost()">+ Create Post</button>
 </div>
+
 <div id="feed">
 <div class="post">
 <b>🇳🇵 NEPAL SATHI</b>
@@ -201,220 +236,17 @@ oninput="searchMenu()">
 </div>
 </section>
 
+<!-- SHORTS -->
+
 <section id="shorts">
 <h2>🎬 NEPAL SHORTS</h2>
 <p>नेपाली भिडियोहरूको संसार</p>
+
 <div class="video">
 <h1>▶️</h1>
 <p>आफ्नो भिडियो छान्नुहोस्</p>
 <input type="file" id="videoFile" accept="video/*">
-<button onclick="showVideo()">Upload Demo Video</button>
+<button onclick="showVideo()">Play Video Demo</button>
 <div id="videoArea"></div>
 </div>
-</section>
-
-<section id="games">
-<h2>🎮 GAMING ZONE</h2>
-<div class="game">🎲 Ludo</div>
-<div class="game">♟️ Chess</div>
-<div class="game">🏏 Cricket</div>
-<div class="game">🧩 Puzzle</div>
-
-<h3>❌⭕ Tic Tac Toe</h3>
-<div id="board">
-<button onclick="move(this)"></button>
-<button onclick="move(this)"></button>
-<button onclick="move(this)"></button>
-<button onclick="move(this)"></button>
-<button onclick="move(this)"></button>
-<button onclick="move(this)"></button>
-<button onclick="move(this)"></button>
-<button onclick="move(this)"></button>
-<button onclick="move(this)"></button>
-</div>
-<p id="status">X को पालो</p>
-<button onclick="resetGame()">New Game</button>
-</section>
-
-<section id="news">
-<h2>📰 NEPAL NEWS</h2>
-<div id="newsList">समाचार लोड हुँदैछ...</div>
-<button onclick="loadNews()">Refresh News</button>
-</section>
-
-<section id="patro" class="card">
-<h2>📅 नेपाली पात्रो</h2>
-<p>नेपाली पात्रो सेवा छिट्टै।</p>
-</section>
-
-<section id="weather" class="card">
-<h2>🌤️ Weather Nepal</h2>
-<p>मौसम सेवा छिट्टै।</p>
-</section>
-
-<section id="health" class="card">
-<h2>🏥 Health Nepal</h2>
-<p>स्वास्थ्य जानकारी।</p>
-</section>
-
-<section id="doctor" class="card">
-<h2>👨‍⚕️ Online Doctor</h2>
-<p>Verified Doctor Consultation।</p>
-</section>
-
-<section id="nepse" class="card">
-<h2>📈 NEPSE</h2>
-<p>Share Market जानकारी।</p>
-</section>
-
-<section id="chat" class="card">
-<h2>💬 Nepal Sathi Chat</h2>
-<p>Chat सेवा छिट्टै।</p>
-</section>
-
-<section id="profile" class="card">
-<h2>👤 MY PROFILE</h2>
-<p>NEPAL SATHI User</p>
-</section>
-
-<section id="services" class="card">
-<h2>🇳🇵 NEPAL SERVICES</h2>
-<p>नेपालका डिजिटल सेवाहरू।</p>
-</section>
-
-</div>
-
-<footer>
-<h2>🇳🇵 NEPAL SATHI</h2>
-<p>Connect Nepal. Discover More.</p>
-<p>Developed by Dilip Rimal</p>
-</footer>
-
-<script>
-
-function createPost(){
- const text=document.getElementById("postText").value.trim();
- const file=document.getElementById("postImage").files[0];
- if(!text && !file){alert("केही लेख्नुहोस् वा फोटो छान्नुहोस्");return;}
-
- const post=document.createElement("div");
- post.className="post";
-
- const name=document.createElement("b");
- name.textContent="👤 NEPAL SATHI USER";
- post.appendChild(name);
-
- if(text){
-  const p=document.createElement("p");
-  p.textContent=text;
-  post.appendChild(p);
- }
-
- if(file){
-  const img=document.createElement("img");
-  const reader=new FileReader();
-  reader.onload=e=>img.src=e.target.result;
-  reader.readAsDataURL(file);
-  post.appendChild(img);
- }
-
- const actions=document.createElement("div");
- actions.className="actions";
- const like=document.createElement("button");
- like.textContent="❤️ Like 0";
- let count=0;
- like.onclick=()=>{count++;like.textContent="❤️ Like "+count;};
- const comment=document.createElement("button");
- comment.textContent="💬 Comment";
- comment.onclick=()=>alert("Comment सुविधा अर्को चरणमा थपिन्छ।");
- actions.append(like,comment);
- post.appendChild(actions);
-
- document.getElementById("feed").prepend(post);
- document.getElementById("postText").value="";
- document.getElementById("postImage").value="";
-}
-
-function showVideo(){
- const file=document.getElementById("videoFile").files[0];
- if(!file){alert("पहिले भिडियो छान्नुहोस्");return;}
- const url=URL.createObjectURL(file);
- const video=document.createElement("video");
- video.src=url;
- video.controls=true;
- video.autoplay=true;
- video.loop=true;
- video.playsInline=true;
- video.style.width="100%";
- video.style.borderRadius="12px";
- const area=document.getElementById("videoArea");
- area.replaceChildren(video);
-}
-
-let player="X",over=false;
-
-function move(btn){
- if(btn.textContent||over)return;
- btn.textContent=player;
- const c=[...document.querySelectorAll("#board button")];
- const v=c.map(x=>x.textContent);
- const wins=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
- if(wins.some(w=>w.every(i=>v[i]===player))){
- document.getElementById("status").textContent=player+" Winner!";
- over=true;return;
- }
- if(v.every(Boolean)){
- document.getElementById("status").textContent="Draw!";
- over=true;return;
- }
- player=player==="X"?"O":"X";
- document.getElementById("status").textContent=player+" को पालो";
-}
-
-function resetGame(){
- document.querySelectorAll("#board button").forEach(b=>b.textContent="");
- player="X";over=false;
- document.getElementById("status").textContent="X को पालो";
-}
-
-function searchMenu(){
- const q=document.getElementById("search").value.toLowerCase();
- document.querySelectorAll("#menu .menu").forEach(item=>{
- item.style.display=item.textContent.toLowerCase().includes(q)?"block":"none";
- });
-}
-
-async function loadNews(){
- const box=document.getElementById("newsList");
- box.textContent="समाचार लोड हुँदैछ...";
- try{
- const feed="https://news.google.com/rss?hl=ne&gl=NP&ceid=NP:ne";
- const api="https://api.rss2json.com/v1/api.json?rss_url="+encodeURIComponent(feed);
- const res=await fetch(api);
- if(!res.ok)throw Error();
- const data=await res.json();
- if(!data.items?.length)throw Error();
- box.replaceChildren();
- data.items.slice(0,10).forEach(item=>{
- const article=document.createElement("article");
- article.className="post";
- const title=document.createElement("h3");
- title.textContent=item.title;
- const link=document.createElement("a");
- link.href=item.link;
- link.target="_blank";
- link.rel="noopener noreferrer";
- link.textContent="पूरा समाचार पढ्नुहोस् →";
- article.append(title,link);
- box.appendChild(article);
- });
- }catch(e){
- box.textContent="समाचार अहिले उपलब्ध छैन।";
- }
-}
-
-loadNews();
-
-</script>
-</body>
-</html>
+</

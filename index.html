@@ -3,320 +3,358 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>D-SATHI</title>
+<meta name="theme-color" content="#c90024">
+<title>NEPAL SATHI</title>
 
 <style>
 *{box-sizing:border-box}
 
-html{
-scroll-behavior:smooth;
-}
-
 body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#f5f5f5;
-color:#222;
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:#f4f6fa;
+ color:#222;
 }
 
 header{
-background:#d71920;
-color:white;
-padding:22px 10px;
-text-align:center;
+ background:linear-gradient(135deg,#b90025,#ed2638);
+ color:white;
+ padding:22px 16px;
+ border-radius:0 0 25px 25px;
 }
 
-header h1{margin:0;font-size:28px}
-header p{margin:7px 0 0}
+.top{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+}
+
+.logo{
+ font-size:25px;
+ font-weight:bold;
+}
+
+.profile{
+ background:white;
+ color:#c90024;
+ padding:10px;
+ border-radius:50%;
+}
+
+.search{
+ width:100%;
+ padding:14px;
+ border:0;
+ border-radius:12px;
+ margin-top:20px;
+ font-size:15px;
+ outline:none;
+}
+
+.welcome{
+ margin-top:20px;
+}
+
+.welcome h2{margin-bottom:5px}
+
+.container{
+ padding:16px;
+}
+
+.heading{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+}
+
+.heading h3{color:#b90025}
 
 .grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:12px;
-padding:15px;
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:12px;
 }
 
 .card{
-display:block;
-background:white;
-padding:22px 5px;
-border-radius:14px;
-text-align:center;
-text-decoration:none;
-color:#222;
-font-size:16px;
-font-weight:bold;
-box-shadow:0 2px 7px #ddd;
-cursor:pointer;
+ background:white;
+ border-radius:16px;
+ padding:17px 5px;
+ text-align:center;
+ text-decoration:none;
+ color:#222;
+ box-shadow:0 3px 12px #0000000d;
+ font-size:13px;
+ font-weight:bold;
+ transition:.2s;
 }
 
 .card:active{
-background:#ffe5e5;
+ transform:scale(.95);
+}
+
+.icon{
+ display:block;
+ font-size:29px;
+ margin-bottom:9px;
 }
 
 section{
-background:white;
-margin:15px;
-padding:18px;
-border-radius:12px;
-scroll-margin-top:15px;
-min-height:130px;
+ background:white;
+ margin:15px 0;
+ padding:18px;
+ border-radius:17px;
+ scroll-margin-top:15px;
 }
 
-h2{color:#d71920}
-
-article{
-padding:12px 0;
-border-bottom:1px solid #ddd;
-text-align:left;
-}
-
-article a{
-color:#d71920;
-text-decoration:none;
-font-weight:bold;
-}
-
-button{
-background:#d71920;
-color:white;
-border:0;
-padding:12px 20px;
-border-radius:8px;
-cursor:pointer;
+section h2{
+ color:#c90024;
+ margin-top:0;
 }
 
 .back{
-display:inline-block;
-margin-top:15px;
-color:#d71920;
-text-decoration:none;
-font-weight:bold;
+ color:#c90024;
+ text-decoration:none;
+ font-weight:bold;
+ display:inline-block;
+ margin-top:15px;
+}
+
+button{
+ background:#c90024;
+ color:white;
+ border:0;
+ padding:12px 18px;
+ border-radius:10px;
+ cursor:pointer;
+}
+
+.postbox{
+ background:#f4f4f4;
+ padding:14px;
+ border-radius:12px;
+}
+
+.postbox input{
+ width:100%;
+ padding:12px;
+ border:1px solid #ddd;
+ border-radius:10px;
+ margin-bottom:10px;
+}
+
+.game{
+ display:inline-block;
+ background:#fff0f2;
+ padding:15px;
+ border-radius:12px;
+ margin:5px;
+ text-align:center;
 }
 
 footer{
-background:#d71920;
-color:white;
-text-align:center;
-padding:18px;
-margin-top:20px;
+ background:#b90025;
+ color:white;
+ text-align:center;
+ padding:25px;
+ margin-top:25px;
 }
+
+nav{
+ position:sticky;
+ bottom:0;
+ background:white;
+ display:flex;
+ justify-content:space-around;
+ padding:12px 2px;
+ box-shadow:0 -2px 10px #ddd;
+ z-index:10;
+}
+
+nav a{
+ text-decoration:none;
+ color:#c90024;
+ text-align:center;
+ font-size:12px;
+ font-weight:bold;
+}
+
+nav span{
+ display:block;
+ font-size:21px;
+}
+
+.news article{
+ border-bottom:1px solid #eee;
+ padding:12px 0;
+}
+
+.news a{
+ color:#c90024;
+ text-decoration:none;
+}
+
+#ticboard{
+ display:grid;
+ grid-template-columns:repeat(3,75px);
+ gap:5px;
+ margin:15px 0;
+}
+
+#ticboard button{
+ width:75px;
+ height:75px;
+ font-size:28px;
+ background:#fff0f2;
+ color:#c90024;
+}
+
 </style>
 </head>
 
 <body>
 
 <header>
-<h1>🇳🇵 D-SATHI</h1>
-<p>नेपालको आफ्नै डिजिटल साथी</p>
+
+<div class="top">
+<div class="logo">🇳🇵 NEPAL SATHI</div>
+<div class="profile">👤</div>
+</div>
+
+<div class="welcome">
+<h2>नमस्कार! स्वागत छ ❤️</h2>
+<p>नेपालको डिजिटल संसार एउटै ठाउँमा।</p>
+</div>
+
+<input class="search" id="search"
+placeholder="🔍 आफ्नो सेवा खोज्नुहोस्..."
+oninput="searchMenu()">
+
 </header>
 
-<div class="grid">
+<div class="container">
 
-<a class="card" href="#patro">📅 नेपाली पात्रो</a>
+<div class="heading">
+<h3>✨ Explore Nepal Sathi</h3>
+</div>
 
-<a class="card" href="#nepal-news">📰 समाचार</a>
+<div class="grid" id="menu">
 
-<a class="card" href="#health">🏥 स्वास्थ्य</a>
+<a class="card" href="#social">
+<span class="icon">📘</span>Social Nepal
+</a>
 
-<a class="card" href="#doctor">👨‍⚕️ Online Doctor</a>
+<a class="card" href="#shorts">
+<span class="icon">🎬</span>Nepal Shorts
+</a>
 
-<a class="card" href="#videos">🎬 Short Videos</a>
+<a class="card" href="#games">
+<span class="icon">🎮</span>Gaming Zone
+</a>
 
-<a class="card" href="#chat">💬 Chat</a>
+<a class="card" href="#news">
+<span class="icon">📰</span>News
+</a>
 
-<a class="card" href="#games">🎮 Games</a>
+<a class="card" href="#patro">
+<span class="icon">📅</span>नेपाली पात्रो
+</a>
 
-<a class="card" href="#weather">🌤️ मौसम</a>
+<a class="card" href="#weather">
+<span class="icon">🌤️</span>Weather
+</a>
 
-<a class="card" href="#share">📈 Share Market</a>
+<a class="card" href="#health">
+<span class="icon">🏥</span>Health
+</a>
 
-<a class="card" href="#profile">👤 Profile</a>
+<a class="card" href="#doctor">
+<span class="icon">👨‍⚕️</span>Online Doctor
+</a>
+
+<a class="card" href="#nepse">
+<span class="icon">📈</span>NEPSE
+</a>
+
+<a class="card" href="#chat">
+<span class="icon">💬</span>Chat
+</a>
+
+<a class="card" href="#profile">
+<span class="icon">👤</span>Profile
+</a>
+
+<a class="card" href="#services">
+<span class="icon">🇳🇵</span>Nepal Services
+</a>
 
 </div>
+
+<section id="social">
+<h2>📘 Social Nepal</h2>
+<p>आफ्ना साथीहरूसँग जोडिनुहोस्।</p>
+
+<div class="postbox">
+<input placeholder="तपाईं के सोच्दै हुनुहुन्छ?">
+<button onclick="alert('Social posting का लागि Login र Server चाहिन्छ।')">
++ Create Post
+</button>
+</div>
+
+<p>आफ्नो नेपाली Social Network।</p>
+</section>
+
+<section id="shorts">
+<h2>🎬 Nepal Shorts</h2>
+<p>नेपाली छोटा भिडियोहरूको संसार।</p>
+<button onclick="alert('Video Upload सुविधा बनाउन Server चाहिन्छ।')">
++ Upload Video
+</button>
+</section>
+
+<section id="games">
+<h2>🎮 Gaming Zone</h2>
+
+<div class="game">❌⭕<br>Tic Tac Toe</div>
+<div class="game">♟️<br>Chess</div>
+<div class="game">🎲<br>Ludo</div>
+<div class="game">🧩<br>Puzzle</div>
+<div class="game">🏏<br>Cricket</div>
+
+<h3>❌⭕ Tic Tac Toe</h3>
+
+<div id="ticboard">
+<button onclick="play(this)"></button>
+<button onclick="play(this)"></button>
+<button onclick="play(this)"></button>
+<button onclick="play(this)"></button>
+<button onclick="play(this)"></button>
+<button onclick="play(this)"></button>
+<button onclick="play(this)"></button>
+<button onclick="play(this)"></button>
+<button onclick="play(this)"></button>
+</div>
+
+<p id="game-status">X को पालो</p>
+<button onclick="resetGame()">नयाँ खेल</button>
+
+</section>
+
+<section id="news" class="news">
+<h2>📰 नेपालका मुख्य समाचार</h2>
+<div id="news-list">समाचार लोड हुँदैछ...</div>
+<button onclick="loadNews()">Refresh News</button>
+</section>
 
 <section id="patro">
 <h2>📅 नेपाली पात्रो</h2>
 <p>नेपाली पात्रो सेवा छिट्टै उपलब्ध हुनेछ।</p>
-<a class="back" href="#">↑ Home मा फर्कनुहोस्</a>
-</section>
-
-<section id="nepal-news">
-<h2>🇳🇵 नेपालका मुख्य समाचार</h2>
-
-<div id="news-list">समाचार लोड हुँदैछ...</div>
-
-<button onclick="loadNepalNews()">🔄 Refresh News</button>
-
-<a class="back" href="#">↑ Home मा फर्कनुहोस्</a>
-</section>
-
-<section id="health">
-<h2>🏥 स्वास्थ्य</h2>
-<p>स्वास्थ्य जानकारी तथा सुझाव।</p>
-<a class="back" href="#">↑ Home मा फर्कनुहोस्</a>
-</section>
-
-<section id="doctor">
-<h2>👨‍⚕️ Online Doctor</h2>
-<p>Verified Doctor Consultation सेवा छिट्टै।</p>
-<a class="back" href="#">↑ Home मा फर्कनुहोस्</a>
-</section>
-
-<section id="videos">
-<h2>🎬 Short Videos</h2>
-<p>Short Video सेवा छिट्टै।</p>
-<a class="back" href="#">↑ Home मा फर्कनुहोस्</a>
-</section>
-
-<section id="chat">
-<h2>💬 D-SATHI Chat</h2>
-<p>Chat सेवा छिट्टै।</p>
-<a class="back" href="#">↑ Home मा फर्कनुहोस्</a>
-</section>
-
-<section id="games">
-<h2>🎮 Games</h2>
-<p>Games सेवा छिट्टै।</p>
-<a class="back" href="#">↑ Home मा फर्कनुहोस्</a>
 </section>
 
 <section id="weather">
-<h2>🌤️ मौसम</h2>
-<p>मौसम सेवा छिट्टै।</p>
-<a class="back" href="#">↑ Home मा फर्कनुहोस्</a>
+<h2>🌤️ Nepal Weather</h2>
+<p>मौसम जानकारी सेवा छिट्टै उपलब्ध हुनेछ।</p>
 </section>
 
-<section id="share">
-<h2>📈 Share Market</h2>
-<p>NEPSE जानकारी छिट्टै।</p>
-<a class="back" href="#">↑ Home मा फर्कनुहोस्</a>
-</section>
-
-<section id="profile">
-<h2>👤 Profile</h2>
-<p>D-SATHI User Profile</p>
-<a class="back" href="#">↑ Home मा फर्कनुहोस्</a>
-</section>
-
-<footer>
-<p>🇳🇵 D-SATHI</p>
-<p>Developed by Dilip Rimal</p>
-</footer>
-
-<script>
-
-async function loadNepalNews(){
-
-const box=document.getElementById("news-list");
-
-box.innerHTML="समाचार लोड हुँदैछ...";
-
-const feed="https://news.google.com/rss?hl=ne&gl=NP&ceid=NP:ne";
-
-try{
-
-const api="https://api.rss2json.com/v1/api.json?rss_url="
-+encodeURIComponent(feed);
-
-const response=await fetch(api);
-
-if(!response.ok) throw new Error("Network error");
-
-const data=await response.json();
-
-if(!data.items || data.items.length===0){
-throw new Error("No news");
-}
-
-box.innerHTML=data.items.slice(0,15).map(item=>`
-
-<article>
-<h3>${escapeHTML(item.title)}</h3>
-<p>${escapeHTML(item.pubDate || "")}</p>
-<a href="${safeNewsLink(item.link)}"
-target="_blank" rel="noopener noreferrer">
-पूरा समाचार पढ्नुहोस् →
-</a>
-</article>
-
-`).join("");
-
-}catch(error){
-
-box.innerHTML=`
-<p>समाचार अहिले उपलब्ध छैन।</p>
-<button onclick="loadNepalNews()">
-फेरि प्रयास गर्नुहोस्
-</button>
-`;
-
-}
-
-}
-
-function escapeHTML(text){
-
-return String(text).replace(/[&<>"']/g,function(c){
-
-return {
-'&':'&amp;',
-'<':'&lt;',
-'>':'&gt;',
-'"':'&quot;',
-"'":'&#39;'
-}[c];
-
-});
-
-}
-
-function safeNewsLink(link){
-
-try{
-const url=new URL(link);
-
-if(url.protocol==="https:"){
-return escapeHTML(url.href);
-}
-
-}catch(e){}
-
-return "#";
-
-}
-
-// Menu click navigation
-document.querySelectorAll('.card, .back').forEach(link=>{
-
-link.addEventListener('click',function(e){
-
-const target=this.getAttribute('href');
-
-if(!target || !target.startsWith('#')) return;
-
-const section=document.querySelector(target);
-
-if(section){
-
-e.preventDefault();
-
-section.scrollIntoView({
-behavior:'smooth',
-block:'start'
-});
-
-history.replaceState(null,'',target);
-
-}
-
-});
-
-});
-
-loadNepalNews();
-
-</script>
-
-</body>
-</html>
+<section id="health">
+<h2>🏥 Health Nepal</h2>
+<p>स्वास्थ्य जानकारी

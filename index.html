@@ -1,44 +1,258 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>D-SATHI</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#f5f5f5;
+color:#222;
+}
+
+header{
+background:#d71920;
+color:white;
+padding:22px 10px;
+text-align:center;
+}
+
+header h1{margin:0;font-size:28px}
+
+header p{margin:7px 0 0}
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+padding:15px;
+}
+
+.card{
+background:white;
+padding:22px 5px;
+border-radius:14px;
+text-align:center;
+text-decoration:none;
+color:#222;
+font-size:16px;
+font-weight:bold;
+box-shadow:0 2px 7px #ddd;
+}
+
+.card:active{
+background:#ffe5e5;
+}
+
+section{
+background:white;
+margin:15px;
+padding:15px;
+border-radius:12px;
+}
+
+h2{
+color:#d71920;
+}
+
+article{
+padding:12px 0;
+border-bottom:1px solid #ddd;
+text-align:left;
+}
+
+article a{
+color:#d71920;
+text-decoration:none;
+font-weight:bold;
+}
+
+button{
+background:#d71920;
+color:white;
+border:0;
+padding:12px 20px;
+border-radius:8px;
+}
+
+footer{
+background:#d71920;
+color:white;
+text-align:center;
+padding:18px;
+margin-top:20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🇳🇵 D-SATHI</h1>
+<p>नेपालको आफ्नै डिजिटल साथी</p>
+</header>
+
+<div class="grid">
+
+<a class="card" href="#patro">📅 नेपाली पात्रो</a>
+
+<a class="card" href="#nepal-news">📰 समाचार</a>
+
+<a class="card" href="#health">🏥 स्वास्थ्य</a>
+
+<a class="card" href="#doctor">👨‍⚕️ Online Doctor</a>
+
+<a class="card" href="#videos">🎬 Short Videos</a>
+
+<a class="card" href="#chat">💬 Chat</a>
+
+<a class="card" href="#games">🎮 Games</a>
+
+<a class="card" href="#weather">🌤️ मौसम</a>
+
+<a class="card" href="#share">📈 Share Market</a>
+
+<a class="card" href="#profile">👤 Profile</a>
+
+</div>
+
+<section id="nepal-news">
+
+<h2>🇳🇵 नेपालका मुख्य समाचार</h2>
+
+<div id="news-list">
+समाचार लोड हुँदैछ...
+</div>
+
+<button onclick="loadNepalNews()">
+🔄 Refresh News
+</button>
+
+</section>
+
+<section id="patro">
+<h2>📅 नेपाली पात्रो</h2>
+<p>नेपाली पात्रो सेवा छिट्टै उपलब्ध हुनेछ।</p>
+</section>
+
+<section id="health">
+<h2>🏥 स्वास्थ्य</h2>
+<p>स्वास्थ्य जानकारी तथा सुझाव।</p>
+</section>
+
+<section id="doctor">
+<h2>👨‍⚕️ Online Doctor</h2>
+<p>Verified Doctor Consultation सेवा छिट्टै।</p>
+</section>
+
+<section id="videos">
+<h2>🎬 Short Videos</h2>
+<p>Short Video सेवा छिट्टै।</p>
+</section>
+
+<section id="chat">
+<h2>💬 D-SATHI Chat</h2>
+<p>Chat सेवा छिट्टै।</p>
+</section>
+
+<section id="games">
+<h2>🎮 Games</h2>
+<p>Games सेवा छिट्टै।</p>
+</section>
+
+<section id="weather">
+<h2>🌤️ मौसम</h2>
+<p>मौसम सेवा छिट्टै।</p>
+</section>
+
+<section id="share">
+<h2>📈 Share Market</h2>
+<p>NEPSE जानकारी छिट्टै।</p>
+</section>
+
+<section id="profile">
+<h2>👤 Profile</h2>
+<p>D-SATHI User Profile</p>
+</section>
+
+<footer>
+<p>🇳🇵 D-SATHI</p>
+<p>Developed by Dilip Rimal</p>
+</footer>
+
 <script>
-async function loadNepalNews() {
-    const box = document.getElementById("news-list");
 
-    box.innerHTML = "समाचार लोड हुँदैछ...";
+async function loadNepalNews(){
 
-    const feed = "https://news.google.com/rss?hl=ne&gl=NP&ceid=NP:ne";
+const box=document.getElementById("news-list");
 
-    try {
-        const api = "https://api.rss2json.com/v1/api.json?rss_url="
-                    + encodeURIComponent(feed);
+box.innerHTML="समाचार लोड हुँदैछ...";
 
-        const response = await fetch(api);
+const feed="https://news.google.com/rss?hl=ne&gl=NP&ceid=NP:ne";
 
-        if (!response.ok) {
-            throw new Error("API Error");
-        }
+try{
 
-        const data = await response.json();
+const api="https://api.rss2json.com/v1/api.json?rss_url="
++encodeURIComponent(feed);
 
-        if (data.status !== "ok" || !data.items || data.items.length === 0) {
-            throw new Error("News unavailable");
-        }
+const response=await fetch(api);
 
-        box.innerHTML = data.items.slice(0, 15).map(item => `
-            <article>
-                <h3>${item.title}</h3>
-                <p>${item.pubDate || ""}</p>
-                <a href="${item.link}" target="_blank">
-                    पूरा समाचार पढ्नुहोस् →
-                </a>
-            </article>
-        `).join("");
+if(!response.ok) throw new Error("Network error");
 
-    } catch (error) {
-        box.innerHTML = `
-            <p>समाचार लोड हुन सकेन।</p>
-            <button onclick="loadNepalNews()">🔄 फेरि प्रयास गर्नुहोस्</button>
-        `;
-    }
+const data=await response.json();
+
+if(!data.items || data.items.length===0){
+throw new Error("No news");
+}
+
+box.innerHTML=data.items.slice(0,15).map(item=>`
+
+<article>
+<h3>${escapeHTML(item.title)}</h3>
+<p>${item.pubDate || ""}</p>
+<a href="${item.link}" target="_blank" rel="noopener">
+पूरा समाचार पढ्नुहोस् →
+</a>
+</article>
+
+`).join("");
+
+}catch(error){
+
+box.innerHTML=`
+<p>समाचार अहिले उपलब्ध छैन।</p>
+<button onclick="loadNepalNews()">
+फेरि प्रयास गर्नुहोस्
+</button>
+`;
+
+}
+
+}
+
+function escapeHTML(text){
+
+return String(text).replace(/[&<>"']/g,function(c){
+return {
+'&':'&amp;',
+'<':'&lt;',
+'>':'&gt;',
+'"':'&quot;',
+"'":'&#39;'
+}[c];
+});
+
 }
 
 loadNepalNews();
+
 </script>
+
+</body>
+</html>

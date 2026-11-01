@@ -1,69 +1,44 @@
-<!DOCTYPE html>
-<html lang="ne">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NEPAL SATHI</title>
-<style>
-body{margin:0;font-family:Arial;background:#f5f5f5;text-align:center}
-header{background:#d71920;color:white;padding:25px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:15px}
-.card{background:white;padding:22px 8px;border-radius:12px;text-decoration:none;color:black}
-#nepal-news{background:white;margin:15px;padding:15px;border-radius:12px}
-article{padding:12px;border-bottom:1px solid #ddd;text-align:left}
-article a{color:#d71920}
-footer{padding:20px}
-</style>
-</head>
-<body>
-
-<header>
-<h1>🇳🇵 NEPAL SATHI</h1>
-<p>नेपालको आफ्नै डिजिटल साथी</p>
-</header>
-
-<div class="grid">
-<a class="card" href="#">📅 नेपाली पात्रो</a>
-<a class="card" href="#nepal-news">📰 समाचार</a>
-<a class="card" href="#">🏥 स्वास्थ्य</a>
-<a class="card" href="#">👨‍⚕️ Online Doctor</a>
-<a class="card" href="#">🎬 Short Videos</a>
-<a class="card" href="#">💬 Chat</a>
-<a class="card" href="#">🎮 Games</a>
-<a class="card" href="#">🌤️ मौसम</a>
-<a class="card" href="#">📈 Share Market</a>
-<a class="card" href="#">👤 Profile</a>
-</div>
-
-<section id="nepal-news">
-<h2>🇳🇵 नेपालका मुख्य समाचार</h2>
-<div id="news-list">समाचार लोड हुँदैछ...</div>
-</section>
-
-<footer>
-Developed by Dilip Rimal
-</footer>
-
 <script>
-async function loadNepalNews(){
-const box=document.getElementById("news-list");
-const feed="https://news.google.com/rss?hl=ne&gl=NP&ceid=NP:ne";
-try{
-const url="https://api.rss2json.com/v1/api.json?rss_url="+encodeURIComponent(feed);
-const response=await fetch(url);
-if(!response.ok) throw new Error("Network error");
-const data=await response.json();
-if(!data.items || !data.items.length) throw new Error("No news");
-box.innerHTML=data.items.slice(0,15).map(item=>
-`<article><h3>${item.title}</h3>
-<a href="${item.link}" target="_blank">पूरा समाचार पढ्नुहोस्</a></article>`
-).join("");
-}catch(error){
-box.innerHTML="समाचार अहिले उपलब्ध छैन।";
+async function loadNepalNews() {
+    const box = document.getElementById("news-list");
+
+    box.innerHTML = "समाचार लोड हुँदैछ...";
+
+    const feed = "https://news.google.com/rss?hl=ne&gl=NP&ceid=NP:ne";
+
+    try {
+        const api = "https://api.rss2json.com/v1/api.json?rss_url="
+                    + encodeURIComponent(feed);
+
+        const response = await fetch(api);
+
+        if (!response.ok) {
+            throw new Error("API Error");
+        }
+
+        const data = await response.json();
+
+        if (data.status !== "ok" || !data.items || data.items.length === 0) {
+            throw new Error("News unavailable");
+        }
+
+        box.innerHTML = data.items.slice(0, 15).map(item => `
+            <article>
+                <h3>${item.title}</h3>
+                <p>${item.pubDate || ""}</p>
+                <a href="${item.link}" target="_blank">
+                    पूरा समाचार पढ्नुहोस् →
+                </a>
+            </article>
+        `).join("");
+
+    } catch (error) {
+        box.innerHTML = `
+            <p>समाचार लोड हुन सकेन।</p>
+            <button onclick="loadNepalNews()">🔄 फेरि प्रयास गर्नुहोस्</button>
+        `;
+    }
 }
-}
+
 loadNepalNews();
 </script>
-
-</body>
-</html>

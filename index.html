@@ -1,159 +1,69 @@
-o<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ne">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NEPAL SATHI</title>
-
-<link rel="manifest" href="/D-SATHI/manifest.json">
-<meta name="theme-color" content="#d71920">
-
 <style>
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f5f5f5;
-  text-align: center;
-}
-
-header {
-  background: #d71920;
-  color: white;
-  padding: 30px 15px;
-}
-
-h1 {
-  margin: 0;
-  font-size: 30px;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
-  padding: 20px;
-}
-
-.card {
-  background: white;
-  padding: 25px 10px;
-  border-radius: 15px;
-  font-size: 17px;
-  box-shadow: 0 2px 6px #ccc;
-}
-
-.card:active {
-  background: #ffe5e5;
-}
-
-.install {
-  background: #d71920;
-  color: white;
-  border: none;
-  padding: 14px 25px;
-  border-radius: 10px;
-  font-size: 16px;
-  margin: 10px;
-}
-
-footer {
-  padding: 20px;
-  color: #555;
-}
+body{margin:0;font-family:Arial;background:#f5f5f5;text-align:center}
+header{background:#d71920;color:white;padding:25px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:15px}
+.card{background:white;padding:22px 8px;border-radius:12px;text-decoration:none;color:black}
+#nepal-news{background:white;margin:15px;padding:15px;border-radius:12px}
+article{padding:12px;border-bottom:1px solid #ddd;text-align:left}
+article a{color:#d71920}
+footer{padding:20px}
 </style>
 </head>
-
 <body>
 
 <header>
 <h1>🇳🇵 NEPAL SATHI</h1>
-<p>All in One Nepal App</p>
 <p>नेपालको आफ्नै डिजिटल साथी</p>
 </header>
 
-<button id="installBtn" class="install" hidden>
-📲 Install NEPAL SATHI
-</button>
-
 <div class="grid">
-<div class="card">📅 नेपाली पात्रो</div>
-<div class="card">📰 समाचार</div>
-<div class="card">🏥 स्वास्थ्य</div>
-<div class="card">👨‍⚕️ Online Doctor</div>
-<div class="card">🎬 Short Videos</div>
-<div class="card">💬 Chat</div>
-<div class="card">🎮 Games</div>
-<div class="card">🌤️ मौसम</div>
-<div class="card">📈 Share Market</div>
-<div class="card">👤 Profile</div>
+<a class="card" href="#">📅 नेपाली पात्रो</a>
+<a class="card" href="#nepal-news">📰 समाचार</a>
+<a class="card" href="#">🏥 स्वास्थ्य</a>
+<a class="card" href="#">👨‍⚕️ Online Doctor</a>
+<a class="card" href="#">🎬 Short Videos</a>
+<a class="card" href="#">💬 Chat</a>
+<a class="card" href="#">🎮 Games</a>
+<a class="card" href="#">🌤️ मौसम</a>
+<a class="card" href="#">📈 Share Market</a>
+<a class="card" href="#">👤 Profile</a>
 </div>
+
+<section id="nepal-news">
+<h2>🇳🇵 नेपालका मुख्य समाचार</h2>
+<div id="news-list">समाचार लोड हुँदैछ...</div>
+</section>
 
 <footer>
 Developed by Dilip Rimal
-<br>
-© 2026 NEPAL SATHI
 </footer>
 
 <script>
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register(
-      "/D-SATHI/service-worker.js"
-    ).catch(error => console.error(error));
-  });
+async function loadNepalNews(){
+const box=document.getElementById("news-list");
+const feed="https://news.google.com/rss?hl=ne&gl=NP&ceid=NP:ne";
+try{
+const url="https://api.rss2json.com/v1/api.json?rss_url="+encodeURIComponent(feed);
+const response=await fetch(url);
+if(!response.ok) throw new Error("Network error");
+const data=await response.json();
+if(!data.items || !data.items.length) throw new Error("No news");
+box.innerHTML=data.items.slice(0,15).map(item=>
+`<article><h3>${item.title}</h3>
+<a href="${item.link}" target="_blank">पूरा समाचार पढ्नुहोस्</a></article>`
+).join("");
+}catch(error){
+box.innerHTML="समाचार अहिले उपलब्ध छैन।";
 }
-
-let installPrompt;
-
-window.addEventListener("beforeinstallprompt", (event) => {
-  event.preventDefault();
-  installPrompt = event;
-  document.getElementById("installBtn").hidden = false;
-});
-
-document.getElementById("installBtn").addEventListener("click", async () => {
-  if (!installPrompt) return;
-
-  installPrompt.prompt();
-  await installPrompt.userChoice;
-  installPrompt = null;
-  document.getElementById("installBtn").hidden = true;
-});
-</script>
-
-</section id="nepal-news" style="padding:15px;background:#fff">
-  <h2>🇳🇵 नेपालका मुख्य समाचार</h2>
-  <div id="news-list">समाचार लोड हुँदैछ...</div>
-</section>
-
-<script>
-async function loadNepalNews() {
-  const box = document.getElementById("news-list");
-  const feed = "https://news.google.com/rss?hl=ne&gl=NP&ceid=NP:ne";
-
-  try {
-    const url = "https://api.rss2json.com/v1/api.json?rss_url="
-      + encodeURIComponent(feed);
-
-    const response = await fetch(url);
-    const data = await response.json();
-
-    box.innerHTML = data.items.slice(0, 15).map(item => `
-      <article style="padding:12px;border-bottom:1px solid #ddd">
-        <h3>${item.title}</h3>
-        <a href="${item.link}" target="_blank">पूरा समाचार पढ्नुहोस्</a>
-      </article>
-    `).join("");
-  } catch {
-    box.innerHTML = "समाचार अहिले उपलब्ध हुन सकेन।";
-  }
 }
 loadNepalNews();
-</script></body>
+</script>
+
 </body>
 </html>

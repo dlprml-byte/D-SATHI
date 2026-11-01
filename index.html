@@ -3,358 +3,418 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#c90024">
+<meta name="theme-color" content="#c90030">
 <title>NEPAL SATHI</title>
 
 <style>
 *{box-sizing:border-box}
-
 body{
  margin:0;
  font-family:Arial,sans-serif;
- background:#f4f6fa;
+ background:#f3f4f8;
  color:#222;
 }
-
 header{
- background:linear-gradient(135deg,#b90025,#ed2638);
+ background:linear-gradient(135deg,#a90025,#ed1745);
  color:white;
- padding:22px 16px;
- border-radius:0 0 25px 25px;
+ padding:20px;
+ border-radius:0 0 22px 22px;
 }
-
-.top{
+header h1{margin:0;font-size:27px}
+header p{margin-bottom:0}
+.search{
+ width:100%;padding:13px;
+ border:0;border-radius:12px;
+ margin-top:15px;
+}
+nav{
  display:flex;
- justify-content:space-between;
- align-items:center;
+ overflow-x:auto;
+ background:white;
+ position:sticky;
+ top:0;
+ z-index:10;
+ box-shadow:0 2px 8px #ddd;
 }
-
-.logo{
- font-size:25px;
+nav a{
+ flex:1;
+ min-width:75px;
+ padding:13px 5px;
+ text-align:center;
+ color:#c90030;
+ text-decoration:none;
+ font-size:12px;
  font-weight:bold;
 }
-
-.profile{
+nav span{display:block;font-size:22px}
+.container{padding:14px}
+h2{color:#c90030}
+.card{
  background:white;
- color:#c90024;
- padding:10px;
- border-radius:50%;
+ padding:17px;
+ border-radius:15px;
+ margin-bottom:13px;
+ box-shadow:0 2px 8px #ddd;
 }
-
-.search{
- width:100%;
- padding:14px;
- border:0;
- border-radius:12px;
- margin-top:20px;
- font-size:15px;
- outline:none;
-}
-
-.welcome{
- margin-top:20px;
-}
-
-.welcome h2{margin-bottom:5px}
-
-.container{
- padding:16px;
-}
-
-.heading{
- display:flex;
- justify-content:space-between;
- align-items:center;
-}
-
-.heading h3{color:#b90025}
-
 .grid{
  display:grid;
  grid-template-columns:repeat(3,1fr);
- gap:12px;
+ gap:10px;
 }
-
-.card{
+.menu{
  background:white;
- border-radius:16px;
- padding:17px 5px;
  text-align:center;
+ padding:15px 3px;
+ border-radius:14px;
  text-decoration:none;
  color:#222;
- box-shadow:0 3px 12px #0000000d;
- font-size:13px;
+ font-size:12px;
  font-weight:bold;
- transition:.2s;
+ box-shadow:0 2px 7px #ddd;
 }
-
-.card:active{
- transform:scale(.95);
-}
-
-.icon{
- display:block;
- font-size:29px;
- margin-bottom:9px;
-}
-
-section{
- background:white;
- margin:15px 0;
- padding:18px;
- border-radius:17px;
- scroll-margin-top:15px;
-}
-
-section h2{
- color:#c90024;
- margin-top:0;
-}
-
-.back{
- color:#c90024;
- text-decoration:none;
- font-weight:bold;
- display:inline-block;
- margin-top:15px;
-}
-
+.menu span{display:block;font-size:27px;margin-bottom:8px}
 button{
- background:#c90024;
- color:white;
  border:0;
- padding:12px 18px;
- border-radius:10px;
+ background:#c90030;
+ color:white;
+ padding:11px 16px;
+ border-radius:9px;
  cursor:pointer;
 }
-
-.postbox{
- background:#f4f4f4;
- padding:14px;
- border-radius:12px;
-}
-
-.postbox input{
+input,textarea{
  width:100%;
  padding:12px;
  border:1px solid #ddd;
  border-radius:10px;
- margin-bottom:10px;
+ margin:7px 0;
 }
-
+.post{
+ background:white;
+ padding:15px;
+ border-radius:14px;
+ margin:12px 0;
+}
+.post img{width:100%;border-radius:10px}
+.actions{
+ display:flex;
+ gap:15px;
+ margin-top:12px;
+}
+.actions button{background:#fff0f3;color:#c90030}
+section{padding-top:10px;scroll-margin-top:65px}
+#shorts{
+ background:#151515;
+ color:white;
+ padding:18px;
+ border-radius:16px;
+ text-align:center;
+}
+#shorts h2{color:white}
+.video{
+ background:#292929;
+ padding:35px 10px;
+ border-radius:15px;
+ margin:12px 0;
+}
 .game{
  display:inline-block;
- background:#fff0f2;
- padding:15px;
- border-radius:12px;
+ background:#fff0f3;
+ color:#c90030;
+ padding:16px;
  margin:5px;
- text-align:center;
+ border-radius:12px;
 }
-
-footer{
- background:#b90025;
- color:white;
- text-align:center;
- padding:25px;
- margin-top:25px;
-}
-
-nav{
- position:sticky;
- bottom:0;
- background:white;
- display:flex;
- justify-content:space-around;
- padding:12px 2px;
- box-shadow:0 -2px 10px #ddd;
- z-index:10;
-}
-
-nav a{
- text-decoration:none;
- color:#c90024;
- text-align:center;
- font-size:12px;
- font-weight:bold;
-}
-
-nav span{
- display:block;
- font-size:21px;
-}
-
-.news article{
- border-bottom:1px solid #eee;
- padding:12px 0;
-}
-
-.news a{
- color:#c90024;
- text-decoration:none;
-}
-
-#ticboard{
+#board{
  display:grid;
  grid-template-columns:repeat(3,75px);
  gap:5px;
- margin:15px 0;
 }
-
-#ticboard button{
- width:75px;
- height:75px;
- font-size:28px;
- background:#fff0f2;
- color:#c90024;
+#board button{
+ width:75px;height:75px;
+ font-size:25px;
+ background:#fff0f3;
+ color:#c90030;
 }
-
+footer{
+ background:#b90030;
+ color:white;
+ text-align:center;
+ padding:22px;
+ margin-top:25px;
+}
 </style>
 </head>
 
 <body>
 
 <header>
-
-<div class="top">
-<div class="logo">🇳🇵 NEPAL SATHI</div>
-<div class="profile">👤</div>
-</div>
-
-<div class="welcome">
-<h2>नमस्कार! स्वागत छ ❤️</h2>
-<p>नेपालको डिजिटल संसार एउटै ठाउँमा।</p>
-</div>
-
+<h1>🇳🇵 NEPAL SATHI</h1>
+<p>Connect Nepal. Discover More.</p>
 <input class="search" id="search"
-placeholder="🔍 आफ्नो सेवा खोज्नुहोस्..."
+placeholder="🔍 Search Nepal Sathi..."
 oninput="searchMenu()">
-
 </header>
+
+<nav>
+<a href="#home"><span>🏠</span>Home</a>
+<a href="#social"><span>📘</span>Social</a>
+<a href="#shorts"><span>🎬</span>Shorts</a>
+<a href="#games"><span>🎮</span>Games</a>
+<a href="#profile"><span>👤</span>Profile</a>
+</nav>
 
 <div class="container">
 
-<div class="heading">
-<h3>✨ Explore Nepal Sathi</h3>
-</div>
+<section id="home">
+<h2>नमस्कार! स्वागत छ ❤️</h2>
+<p>नेपालको आफ्नै डिजिटल संसार।</p>
 
 <div class="grid" id="menu">
-
-<a class="card" href="#social">
-<span class="icon">📘</span>Social Nepal
-</a>
-
-<a class="card" href="#shorts">
-<span class="icon">🎬</span>Nepal Shorts
-</a>
-
-<a class="card" href="#games">
-<span class="icon">🎮</span>Gaming Zone
-</a>
-
-<a class="card" href="#news">
-<span class="icon">📰</span>News
-</a>
-
-<a class="card" href="#patro">
-<span class="icon">📅</span>नेपाली पात्रो
-</a>
-
-<a class="card" href="#weather">
-<span class="icon">🌤️</span>Weather
-</a>
-
-<a class="card" href="#health">
-<span class="icon">🏥</span>Health
-</a>
-
-<a class="card" href="#doctor">
-<span class="icon">👨‍⚕️</span>Online Doctor
-</a>
-
-<a class="card" href="#nepse">
-<span class="icon">📈</span>NEPSE
-</a>
-
-<a class="card" href="#chat">
-<span class="icon">💬</span>Chat
-</a>
-
-<a class="card" href="#profile">
-<span class="icon">👤</span>Profile
-</a>
-
-<a class="card" href="#services">
-<span class="icon">🇳🇵</span>Nepal Services
-</a>
-
+<a class="menu" href="#social"><span>📘</span>Social Nepal</a>
+<a class="menu" href="#shorts"><span>🎬</span>Nepal Shorts</a>
+<a class="menu" href="#games"><span>🎮</span>Gaming Zone</a>
+<a class="menu" href="#news"><span>📰</span>News</a>
+<a class="menu" href="#patro"><span>📅</span>नेपाली पात्रो</a>
+<a class="menu" href="#weather"><span>🌤️</span>Weather</a>
+<a class="menu" href="#health"><span>🏥</span>Health</a>
+<a class="menu" href="#doctor"><span>👨‍⚕️</span>Doctor</a>
+<a class="menu" href="#nepse"><span>📈</span>NEPSE</a>
+<a class="menu" href="#chat"><span>💬</span>Chat</a>
+<a class="menu" href="#profile"><span>👤</span>Profile</a>
+<a class="menu" href="#services"><span>🇳🇵</span>Services</a>
 </div>
+</section>
 
 <section id="social">
-<h2>📘 Social Nepal</h2>
-<p>आफ्ना साथीहरूसँग जोडिनुहोस्।</p>
-
-<div class="postbox">
-<input placeholder="तपाईं के सोच्दै हुनुहुन्छ?">
-<button onclick="alert('Social posting का लागि Login र Server चाहिन्छ।')">
-+ Create Post
-</button>
+<h2>📘 SOCIAL NEPAL</h2>
+<div class="card">
+<h3>What's on your mind?</h3>
+<input id="postText" placeholder="आफ्नो विचार लेख्नुहोस्...">
+<input type="file" id="postImage" accept="image/*">
+<button onclick="createPost()">+ Create Post</button>
 </div>
-
-<p>आफ्नो नेपाली Social Network।</p>
+<div id="feed">
+<div class="post">
+<b>🇳🇵 NEPAL SATHI</b>
+<p>नेपालको आफ्नै Social Network मा स्वागत छ!</p>
+</div>
+</div>
 </section>
 
 <section id="shorts">
-<h2>🎬 Nepal Shorts</h2>
-<p>नेपाली छोटा भिडियोहरूको संसार।</p>
-<button onclick="alert('Video Upload सुविधा बनाउन Server चाहिन्छ।')">
-+ Upload Video
-</button>
+<h2>🎬 NEPAL SHORTS</h2>
+<p>नेपाली भिडियोहरूको संसार</p>
+<div class="video">
+<h1>▶️</h1>
+<p>आफ्नो भिडियो छान्नुहोस्</p>
+<input type="file" id="videoFile" accept="video/*">
+<button onclick="showVideo()">Upload Demo Video</button>
+<div id="videoArea"></div>
+</div>
 </section>
 
 <section id="games">
-<h2>🎮 Gaming Zone</h2>
-
-<div class="game">❌⭕<br>Tic Tac Toe</div>
-<div class="game">♟️<br>Chess</div>
-<div class="game">🎲<br>Ludo</div>
-<div class="game">🧩<br>Puzzle</div>
-<div class="game">🏏<br>Cricket</div>
+<h2>🎮 GAMING ZONE</h2>
+<div class="game">🎲 Ludo</div>
+<div class="game">♟️ Chess</div>
+<div class="game">🏏 Cricket</div>
+<div class="game">🧩 Puzzle</div>
 
 <h3>❌⭕ Tic Tac Toe</h3>
-
-<div id="ticboard">
-<button onclick="play(this)"></button>
-<button onclick="play(this)"></button>
-<button onclick="play(this)"></button>
-<button onclick="play(this)"></button>
-<button onclick="play(this)"></button>
-<button onclick="play(this)"></button>
-<button onclick="play(this)"></button>
-<button onclick="play(this)"></button>
-<button onclick="play(this)"></button>
+<div id="board">
+<button onclick="move(this)"></button>
+<button onclick="move(this)"></button>
+<button onclick="move(this)"></button>
+<button onclick="move(this)"></button>
+<button onclick="move(this)"></button>
+<button onclick="move(this)"></button>
+<button onclick="move(this)"></button>
+<button onclick="move(this)"></button>
+<button onclick="move(this)"></button>
 </div>
-
-<p id="game-status">X को पालो</p>
-<button onclick="resetGame()">नयाँ खेल</button>
-
+<p id="status">X को पालो</p>
+<button onclick="resetGame()">New Game</button>
 </section>
 
-<section id="news" class="news">
-<h2>📰 नेपालका मुख्य समाचार</h2>
-<div id="news-list">समाचार लोड हुँदैछ...</div>
+<section id="news">
+<h2>📰 NEPAL NEWS</h2>
+<div id="newsList">समाचार लोड हुँदैछ...</div>
 <button onclick="loadNews()">Refresh News</button>
 </section>
 
-<section id="patro">
+<section id="patro" class="card">
 <h2>📅 नेपाली पात्रो</h2>
-<p>नेपाली पात्रो सेवा छिट्टै उपलब्ध हुनेछ।</p>
+<p>नेपाली पात्रो सेवा छिट्टै।</p>
 </section>
 
-<section id="weather">
-<h2>🌤️ Nepal Weather</h2>
-<p>मौसम जानकारी सेवा छिट्टै उपलब्ध हुनेछ।</p>
+<section id="weather" class="card">
+<h2>🌤️ Weather Nepal</h2>
+<p>मौसम सेवा छिट्टै।</p>
 </section>
 
-<section id="health">
+<section id="health" class="card">
 <h2>🏥 Health Nepal</h2>
-<p>स्वास्थ्य जानकारी
+<p>स्वास्थ्य जानकारी।</p>
+</section>
+
+<section id="doctor" class="card">
+<h2>👨‍⚕️ Online Doctor</h2>
+<p>Verified Doctor Consultation।</p>
+</section>
+
+<section id="nepse" class="card">
+<h2>📈 NEPSE</h2>
+<p>Share Market जानकारी।</p>
+</section>
+
+<section id="chat" class="card">
+<h2>💬 Nepal Sathi Chat</h2>
+<p>Chat सेवा छिट्टै।</p>
+</section>
+
+<section id="profile" class="card">
+<h2>👤 MY PROFILE</h2>
+<p>NEPAL SATHI User</p>
+</section>
+
+<section id="services" class="card">
+<h2>🇳🇵 NEPAL SERVICES</h2>
+<p>नेपालका डिजिटल सेवाहरू।</p>
+</section>
+
+</div>
+
+<footer>
+<h2>🇳🇵 NEPAL SATHI</h2>
+<p>Connect Nepal. Discover More.</p>
+<p>Developed by Dilip Rimal</p>
+</footer>
+
+<script>
+
+function createPost(){
+ const text=document.getElementById("postText").value.trim();
+ const file=document.getElementById("postImage").files[0];
+ if(!text && !file){alert("केही लेख्नुहोस् वा फोटो छान्नुहोस्");return;}
+
+ const post=document.createElement("div");
+ post.className="post";
+
+ const name=document.createElement("b");
+ name.textContent="👤 NEPAL SATHI USER";
+ post.appendChild(name);
+
+ if(text){
+  const p=document.createElement("p");
+  p.textContent=text;
+  post.appendChild(p);
+ }
+
+ if(file){
+  const img=document.createElement("img");
+  const reader=new FileReader();
+  reader.onload=e=>img.src=e.target.result;
+  reader.readAsDataURL(file);
+  post.appendChild(img);
+ }
+
+ const actions=document.createElement("div");
+ actions.className="actions";
+ const like=document.createElement("button");
+ like.textContent="❤️ Like 0";
+ let count=0;
+ like.onclick=()=>{count++;like.textContent="❤️ Like "+count;};
+ const comment=document.createElement("button");
+ comment.textContent="💬 Comment";
+ comment.onclick=()=>alert("Comment सुविधा अर्को चरणमा थपिन्छ।");
+ actions.append(like,comment);
+ post.appendChild(actions);
+
+ document.getElementById("feed").prepend(post);
+ document.getElementById("postText").value="";
+ document.getElementById("postImage").value="";
+}
+
+function showVideo(){
+ const file=document.getElementById("videoFile").files[0];
+ if(!file){alert("पहिले भिडियो छान्नुहोस्");return;}
+ const url=URL.createObjectURL(file);
+ const video=document.createElement("video");
+ video.src=url;
+ video.controls=true;
+ video.autoplay=true;
+ video.loop=true;
+ video.playsInline=true;
+ video.style.width="100%";
+ video.style.borderRadius="12px";
+ const area=document.getElementById("videoArea");
+ area.replaceChildren(video);
+}
+
+let player="X",over=false;
+
+function move(btn){
+ if(btn.textContent||over)return;
+ btn.textContent=player;
+ const c=[...document.querySelectorAll("#board button")];
+ const v=c.map(x=>x.textContent);
+ const wins=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+ if(wins.some(w=>w.every(i=>v[i]===player))){
+ document.getElementById("status").textContent=player+" Winner!";
+ over=true;return;
+ }
+ if(v.every(Boolean)){
+ document.getElementById("status").textContent="Draw!";
+ over=true;return;
+ }
+ player=player==="X"?"O":"X";
+ document.getElementById("status").textContent=player+" को पालो";
+}
+
+function resetGame(){
+ document.querySelectorAll("#board button").forEach(b=>b.textContent="");
+ player="X";over=false;
+ document.getElementById("status").textContent="X को पालो";
+}
+
+function searchMenu(){
+ const q=document.getElementById("search").value.toLowerCase();
+ document.querySelectorAll("#menu .menu").forEach(item=>{
+ item.style.display=item.textContent.toLowerCase().includes(q)?"block":"none";
+ });
+}
+
+async function loadNews(){
+ const box=document.getElementById("newsList");
+ box.textContent="समाचार लोड हुँदैछ...";
+ try{
+ const feed="https://news.google.com/rss?hl=ne&gl=NP&ceid=NP:ne";
+ const api="https://api.rss2json.com/v1/api.json?rss_url="+encodeURIComponent(feed);
+ const res=await fetch(api);
+ if(!res.ok)throw Error();
+ const data=await res.json();
+ if(!data.items?.length)throw Error();
+ box.replaceChildren();
+ data.items.slice(0,10).forEach(item=>{
+ const article=document.createElement("article");
+ article.className="post";
+ const title=document.createElement("h3");
+ title.textContent=item.title;
+ const link=document.createElement("a");
+ link.href=item.link;
+ link.target="_blank";
+ link.rel="noopener noreferrer";
+ link.textContent="पूरा समाचार पढ्नुहोस् →";
+ article.append(title,link);
+ box.appendChild(article);
+ });
+ }catch(e){
+ box.textContent="समाचार अहिले उपलब्ध छैन।";
+ }
+}
+
+loadNews();
+
+</script>
+</body>
+</html>

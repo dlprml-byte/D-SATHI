@@ -3,11 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <title>D-SATHI</title>
 
 <style>
 *{box-sizing:border-box}
+
+html{
+scroll-behavior:smooth;
+}
 
 body{
 margin:0;
@@ -24,7 +27,6 @@ text-align:center;
 }
 
 header h1{margin:0;font-size:28px}
-
 header p{margin:7px 0 0}
 
 .grid{
@@ -35,6 +37,7 @@ padding:15px;
 }
 
 .card{
+display:block;
 background:white;
 padding:22px 5px;
 border-radius:14px;
@@ -44,6 +47,7 @@ color:#222;
 font-size:16px;
 font-weight:bold;
 box-shadow:0 2px 7px #ddd;
+cursor:pointer;
 }
 
 .card:active{
@@ -53,13 +57,13 @@ background:#ffe5e5;
 section{
 background:white;
 margin:15px;
-padding:15px;
+padding:18px;
 border-radius:12px;
+scroll-margin-top:15px;
+min-height:130px;
 }
 
-h2{
-color:#d71920;
-}
+h2{color:#d71920}
 
 article{
 padding:12px 0;
@@ -79,6 +83,15 @@ color:white;
 border:0;
 padding:12px 20px;
 border-radius:8px;
+cursor:pointer;
+}
+
+.back{
+display:inline-block;
+margin-top:15px;
+color:#d71920;
+text-decoration:none;
+font-weight:bold;
 }
 
 footer{
@@ -122,63 +135,68 @@ margin-top:20px;
 
 </div>
 
-<section id="nepal-news">
-
-<h2>🇳🇵 नेपालका मुख्य समाचार</h2>
-
-<div id="news-list">
-समाचार लोड हुँदैछ...
-</div>
-
-<button onclick="loadNepalNews()">
-🔄 Refresh News
-</button>
-
-</section>
-
 <section id="patro">
 <h2>📅 नेपाली पात्रो</h2>
 <p>नेपाली पात्रो सेवा छिट्टै उपलब्ध हुनेछ।</p>
+<a class="back" href="#">↑ Home मा फर्कनुहोस्</a>
+</section>
+
+<section id="nepal-news">
+<h2>🇳🇵 नेपालका मुख्य समाचार</h2>
+
+<div id="news-list">समाचार लोड हुँदैछ...</div>
+
+<button onclick="loadNepalNews()">🔄 Refresh News</button>
+
+<a class="back" href="#">↑ Home मा फर्कनुहोस्</a>
 </section>
 
 <section id="health">
 <h2>🏥 स्वास्थ्य</h2>
 <p>स्वास्थ्य जानकारी तथा सुझाव।</p>
+<a class="back" href="#">↑ Home मा फर्कनुहोस्</a>
 </section>
 
 <section id="doctor">
 <h2>👨‍⚕️ Online Doctor</h2>
 <p>Verified Doctor Consultation सेवा छिट्टै।</p>
+<a class="back" href="#">↑ Home मा फर्कनुहोस्</a>
 </section>
 
 <section id="videos">
 <h2>🎬 Short Videos</h2>
 <p>Short Video सेवा छिट्टै।</p>
+<a class="back" href="#">↑ Home मा फर्कनुहोस्</a>
 </section>
 
 <section id="chat">
 <h2>💬 D-SATHI Chat</h2>
 <p>Chat सेवा छिट्टै।</p>
+<a class="back" href="#">↑ Home मा फर्कनुहोस्</a>
 </section>
 
 <section id="games">
 <h2>🎮 Games</h2>
 <p>Games सेवा छिट्टै।</p>
+<a class="back" href="#">↑ Home मा फर्कनुहोस्</a>
 </section>
 
 <section id="weather">
 <h2>🌤️ मौसम</h2>
 <p>मौसम सेवा छिट्टै।</p>
+<a class="back" href="#">↑ Home मा फर्कनुहोस्</a>
 </section>
 
 <section id="share">
 <h2>📈 Share Market</h2>
 <p>NEPSE जानकारी छिट्टै।</p>
+<a class="back" href="#">↑ Home मा फर्कनुहोस्</a>
 </section>
 
 <section id="profile">
 <h2>👤 Profile</h2>
 <p>D-SATHI User Profile</p>
+<a class="back" href="#">↑ Home मा फर्कनुहोस्</a>
 </section>
 
 <footer>
@@ -215,8 +233,9 @@ box.innerHTML=data.items.slice(0,15).map(item=>`
 
 <article>
 <h3>${escapeHTML(item.title)}</h3>
-<p>${item.pubDate || ""}</p>
-<a href="${item.link}" target="_blank" rel="noopener">
+<p>${escapeHTML(item.pubDate || "")}</p>
+<a href="${safeNewsLink(item.link)}"
+target="_blank" rel="noopener noreferrer">
 पूरा समाचार पढ्नुहोस् →
 </a>
 </article>
@@ -239,6 +258,7 @@ box.innerHTML=`
 function escapeHTML(text){
 
 return String(text).replace(/[&<>"']/g,function(c){
+
 return {
 '&':'&amp;',
 '<':'&lt;',
@@ -246,9 +266,53 @@ return {
 '"':'&quot;',
 "'":'&#39;'
 }[c];
+
 });
 
 }
+
+function safeNewsLink(link){
+
+try{
+const url=new URL(link);
+
+if(url.protocol==="https:"){
+return escapeHTML(url.href);
+}
+
+}catch(e){}
+
+return "#";
+
+}
+
+// Menu click navigation
+document.querySelectorAll('.card, .back').forEach(link=>{
+
+link.addEventListener('click',function(e){
+
+const target=this.getAttribute('href');
+
+if(!target || !target.startsWith('#')) return;
+
+const section=document.querySelector(target);
+
+if(section){
+
+e.preventDefault();
+
+section.scrollIntoView({
+behavior:'smooth',
+block:'start'
+});
+
+history.replaceState(null,'',target);
+
+}
+
+});
+
+});
 
 loadNepalNews();
 
